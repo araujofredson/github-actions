@@ -37,4 +37,10 @@ jobs:
 
       - name: Extract repository name
         id: repo-name
-        run: echo "::set-output name=repo::$(echo ${{ github.repository }} | cut -d'/' -f2)"
+        run: |
+          echo "${{ github.repository }} | cut -d'/' -f2)" > $VAR_REPO
+          echo $VAR_REPO
+
+
+
+
