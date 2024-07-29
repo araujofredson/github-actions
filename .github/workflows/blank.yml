@@ -38,8 +38,9 @@ jobs:
       - name: Extract repository name
         id: repo-name
         run: |
-          echo ${{ github.repository }} 
-          cat $GITHUB_REPOSITORY | cut -d'/' -f2 > $VAR_REPO
+          echo $GITHUB_REPOSITORY
+          echo ${{ github.repository }} > VAR_REPOSITORY.txt
+          cat VAR_REPOSITORY.txt | cut -d'/' -f2 > $VAR_REPO
           echo $VAR_REPO
 
 
