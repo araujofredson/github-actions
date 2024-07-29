@@ -40,7 +40,7 @@ jobs:
         run: |
           echo $GITHUB_REPOSITORY
           echo ${{ github.repository }} > VAR_REPOSITORY.txt
-          cat VAR_REPOSITORY.txt | cut -d'/' -f2 > $VAR_REPO
+          VAR_REPO=$(cat VAR_REPOSITORY.txt | cut -d'/' -f2)
           echo $VAR_REPO
 
 
