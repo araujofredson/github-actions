@@ -17,7 +17,8 @@ on:
 env:
   COMMIT_BRANCH: ${{ github.ref_name }}
   REPOSITORY_NAME: $GITHUB_REPOSITORY
-  REPOSITORY_OWNER: $GITHUB_REPOSITORY_OWNER
+  REPOSITORY_OWNER: ${{ github.repository_owner }}
+  DOMAIN: ${{ vars.DOMAIN }}
   
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -36,22 +37,24 @@ jobs:
         id: repo-name
         run: |
           echo "REPOSITORY_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)" >> $GITHUB_ENV
-          echo ${{env.GITHUB_REPOSITORY}}
       - name: GITHUB_ACTION
         run: echo $GITHUB_ACTION
       - name: GITHUB_SERVER_URL
         run: echo $GITHUB_SERVER_URL
       - name: GITHUB_SHA
-        run: echo $GITHUB_SHA
-            
+        run: echo $GITHUB_SHA  
       - name: AWS_DEFAULT_REGION
         run: echo ${{ vars.AWS_DEFAULT_REGION }}
-      - name: DOMAIN
+      - name: DOMAIN ENV
+        run: echo ${{ env.DOMAIN }}
+      - name: DOMAIN VARS
         run: echo $DOMAIN
       - name: COMMIT_BRANCH
         run: echo $COMMIT_BRANCH      
       - name: REPOSITORY_NAME
         run: echo ${{env.REPOSITORY_NAME}}
+      - name: REPOSITORY_OWNER
+        run: echo $ REPOSITORY_OWNER
        
 
 
