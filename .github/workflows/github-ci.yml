@@ -54,9 +54,9 @@ jobs:
       - name: GITHUB_ACTOR
         run:  echo $GITHUB_ACTOR
       - name: GITHUB_BASE_REF
-        run: $GITHUB_BASE_REF
+        run: echo $GITHUB_BASE_REF
       - name: GITHUB_REF
-        run: $GITHUB_REF
+        run: echo $GITHUB_REF
 
        
 
