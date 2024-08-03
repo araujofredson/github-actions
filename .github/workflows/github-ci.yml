@@ -37,8 +37,6 @@ jobs:
         id: repo-name
         run: |
           echo "REPOSITORY_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)" >> $GITHUB_ENV
-      - name: GITHUB_ACTION
-        run: echo $GITHUB_ACTION
       - name: GITHUB_SERVER_URL
         run: echo $GITHUB_SERVER_URL
       - name: GITHUB_SHA
@@ -51,10 +49,15 @@ jobs:
         run: echo $DOMAIN
       - name: COMMIT_BRANCH
         run: echo $COMMIT_BRANCH      
-      - name: REPOSITORY_NAME
-        run: echo ${{env.REPOSITORY_NAME}}
       - name: REPOSITORY_OWNER
-        run: echo $ REPOSITORY_OWNER
+        run: echo $REPOSITORY_OWNER
+      - name: GITHUB_ACTOR
+        run:  echo $GITHUB_ACTOR
+      - name: GITHUB_BASE_REF
+        run: $GITHUB_BASE_REF
+      - name: GITHUB_REF
+        run: $GITHUB_REF
+
        
 
 
