@@ -6,12 +6,19 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: [ "main", "develop" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "develop" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
+# variables
+env:
+  COMMIT_BRANCH: ${{ github.ref_name }}
+  REPOSITORY_NAME: $GITHUB_REPOSITORY
+  REPOSITORY_OWNER: $GITHUB_REPOSITORY_OWNER
+  
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -38,17 +45,23 @@ jobs:
       - name: Extract repository name
         id: repo-name
         run: |
-          echo "myrepo: $GITHUB_REPOSITORY"
-          echo ${{ github.repository }} > VAR_REPOSITORY.txt
-          VAR_REPO=$(cat VAR_REPOSITORY.txt | cut -d'/' -f2)
-          echo $VAR_REPO
-      - name: echo vars
-        run: echo ${{ github.repository }}
-      - name: echo vars 2
-        run: echo "$VAR_REPO"
-      - name: echo vars 3
-        run: echo $VAR_REPO
-      
+          echo "REPOSITORY_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)" >> $GITHUB_ENV
+          echo $GITHUB_REPOSITORY
+      - name: GITHUB_ACTION
+        run: echo $GITHUB_ACTION
+      - name: GITHUB_SERVER_URL
+        run: $GITHUB_SERVER_URL
+      - name: GITHUB_SHA
+        run: $GITHUB_SHA
+            
+      - name: AWS_DEFAULT_REGION
+        run: ${{ vars.AWS_DEFAULT_REGION }}
+      - name: DOMAIN
+        run: $DOMAIN
+      - name: COMMIT_BRANCH
+        run: $COMMIT_BRANCH      
+      - name: REPOSITORY_NAME
+        run: ${{env.REPOSITORY_NAME}}
        
 
 
